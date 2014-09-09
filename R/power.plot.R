@@ -23,7 +23,11 @@ function(powers, #named list
 		sapply(1:length(powers),function(ind){
 					power = powers[[ind]]
 					if(length(dim(num.noise)) > 0){
-						points(num.noise[,i],power[i,1:length(num.noise[,i])],pch=pchs[ind],col=col[ind],type="b")
+						if(is.null(rownames(num.noise))){
+							points(num.noise[,i],power[i,1:length(num.noise[,i])],pch=pchs[ind],col=col[ind],type="b")
+						}else{
+							points(as.numeric(rownames(num.noise)),power[i,1:length(num.noise[,i])],pch=pchs[ind],col=col[ind],type="b")
+						}
 					}else{
 						points(num.noise,power[i,1:length(num.noise)],pch=pchs[ind],col=col[ind],type="b")
 					}

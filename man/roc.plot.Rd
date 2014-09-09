@@ -1,6 +1,5 @@
 \name{roc.plot}
 \alias{roc.plot}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Plot a ROC
 }

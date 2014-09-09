@@ -1,15 +1,16 @@
-\name{Pc_givena}
-\alias{Pc_givena}
+\name{P_cge_aeq}
+\alias{P_cge_aeq}
 \title{
-Probability of observing the ith nearest neighbour at distance greater or equal c given the (i-1)th nearest neighbour at distance a
+Probability of observing the ith nearest neighbour at a distance greater or
+equal to c and the (i-1)th nearest neighbour was observed at distance a
 }
 \description{
-This function gives the probability of observing the ith nearest neighbour at distance c given the (i-1)th nearest neighbour at distance a, $P(d_i >= x | d_(i-1) = a)$
+This function gives the probability of observing the ith nearest neighbour at a distance greater or equal to c and the (i-1)th nearest neighbour at distance a
+$P(d_i >= c, d_(i-1) = a)$ 
 }
 \usage{
-Pc_givena(i, c, a, N)
+P_cge_aeq(i, c, a, k, N)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{i}{
 	numeric, which nearest neighbour to consider
@@ -18,7 +19,10 @@ Pc_givena(i, c, a, N)
 	vector, the distance at which the ith NN was observed
 }
   \item{a}{
-	vector, the distance at which the (i-1)th NN was observed, a <= c
+	vector, the distance at which the ith NN was observed. \code{a <= c}
+}
+  \item{k}{
+	vector, number of previous NNs at distance a
 }
   \item{N}{
 	numeric, size of the dataset
@@ -28,7 +32,7 @@ Pc_givena(i, c, a, N)
 The probability is calculated by ranking the data and assuming that the data lie on a torus. For details see Dümcke et al. "A novel test for independence derived from an exact distribution of ith nearest neighbours" (manuscript in preparation)
 }
 \value{
-Probability vector
+Probability vector, entries with value -1 if the probability does not exist
 }
 %\references{
 %%% ~put references to the literature/web site here ~
@@ -39,12 +43,9 @@ Sebastian Dümcke \email{duemcke@mpipz.mpg.de}
 %\note{
 %%%  ~~further notes~~
 %}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
 \seealso{
-\code{\link{P_cge_ale}}, \code{\link{P_ceq}}
+\code{\link{P_ceq}}, \code{\link{Pc_givena}}
 }
 \examples{
-Pc_givena(10,2:7,1:6,20)
+P_cge_aeq(10,4:8,2:6,rep(1,5),30)
 }

@@ -56,9 +56,13 @@ Sebastian Dümcke \email{duemcke@mpipz.mpg.de}
 noises = cbind(lin=c(.1,.5,.8),circ=c(.2,.4,.6))
 mycor = function(...) cor(...)^2
 results.cor=run.tests(mycor,args=list(),types=c(1,7),noises=noises,nsim=50,size=100)
-results = run.tests("novelTest.extreme",args=list(maxi=10),types=c(1,7),noises=noises,nsim=50,
+results = run.tests("novelTest.extreme",args=list(maxi=10),types=c(1,7),noises=noises,nsim=25,
 	size=100)
+\dontrun{
+x11()
+par(mfrow=c(1,ncol(noises)))
 roc.plot(generate.roc(results,pval=FALSE),legend=noises)
+}
 power = t(drop(calculate.power(results,.95,`>`)))
 power.cor = t(drop(calculate.power(results.cor,.95,`>`)))
 #cor is excellent at linear relationships, not so much for circular relationships:

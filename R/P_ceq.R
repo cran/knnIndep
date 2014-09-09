@@ -21,28 +21,23 @@ function(i,c,N){
 	ind = res == -1
 	if(any(ind)){
 		cvals = c[ind]
-		d = 2*cvals-i-1
-		res[ind] = parameters(2,6*d^2+6*d+2,i-1,cvals,N,d)+
+		res[ind] = parameters(2,i-1,cvals,N)+
 				#r = 3
 				#i0 = i-1
-				parameters(3,4*d^3,i-1,cvals,N,d);
+				parameters(3,i-1,cvals,N);
 		#i0 = i-2
 		if(i-2 >= 0 && i <= N-1){ #i0 <= N -r <=> i <= N-r+2
-			d = 2*cvals -i
-			res[ind] = res[ind] + parameters(3,4*d^3,i-2,cvals,N,d);
+			res[ind] = res[ind] + parameters(3,i-2,cvals,N);
 		}
 		#r = 4
 		#i0 = i-1
-		d = 2*cvals-i-1
-		res[ind] = res[ind] + parameters(4,d^2*(d-1)^2,i-1,cvals,N,d);
+		res[ind] = res[ind] + parameters(4,i-1,cvals,N);
 		#i0 = i-2
 		if(i-2 >= 0 && i <= N-2){ #i0 <= N -r <=> i <= N-r+2
-			d = 2*cvals -i
-			res[ind] = res[ind] + parameters(4,d^2*(d-1)^2,i-2,cvals,N,d);
+			res[ind] = res[ind] + parameters(4,i-2,cvals,N);
 			#i0 = i-3
 			if(i-3 >= 0 && i<=N-1){
-				d = 2*cvals -i+1
-				res[ind] = res[ind] + parameters(4,d^2*(d-1)^2,i-3,cvals,N,d);
+				res[ind] = res[ind] + parameters(4,i-3,cvals,N);
 			}
 		}
 	}#if any(ind)
